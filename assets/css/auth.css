@@ -1,10 +1,10 @@
+
 body{
-    display:flex;
-    flex-flow: nowrap column;
-    justify-content: space-between;
+    height: 100vh;
+    background-color: black;
 }
 .container-authforms{
-    padding-top:2em;
+    padding-top:0em;
     display:flex;
     justify-content: center;
     height: 100%;
@@ -13,12 +13,14 @@ body{
         display:flex;
         flex-flow: column nowrap;
         justify-content: center;
+        padding: 0px;
+        margin: 0px;
         form{
-            
+            padding:1em!important;
             display: flex;
             flex-flow: column nowrap;
-            padding: 1em;
-            
+            padding: 0em;
+            margin: 0em;
 
             border-radius: 10px;
             background-color: rgba(0,0,0,0.3);
@@ -35,6 +37,7 @@ body{
         }
     }
 }
+
 .modern-text-input{
     margin: 7px 0px 7px 0px;
     padding: 5px 10px 5px 10px;
@@ -43,4 +46,18 @@ body{
     color:white;
     background-color: rgba(0,0,0,0.3);
 
+}
+
+footer{
+    position: absolute;
+    bottom:0px;
+    left:0px;
+    width: 100%;
+}
+
+.form-connexion{
+    margin: 0px;
+}
+.form-inscription{
+    margin: 0px;
 }

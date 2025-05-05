@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <title>PlaySphere</title>
+        <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/utils.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/buttons.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/auth.css">
+
+        <script src="js/auth.js"></script>   <!-- Authentication manager -->
+        <script src="assets/js/script.js"></script>
+    </head>
+    <body style="height: 100vh;">
+        <nav>
+            <h1 class="logo">
+                <div class="sphere un"></div>
+                    PlaySphere
+            </h1>
+            <ul>
+                <li><a href="#bienvenue">Accueil</a></li>
+                <li><a href="#jeux">Jeux</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="auth.html" class="btn-small" >Connexion</a></li>
+            </ul>
+        </nav>
+        <div class="sections">
+            <section id="authentification">
+                <div class="container-authforms">
+                    <div class="authforms">
+                        <form id="form-connexion" class="connexion collapsible">
+                            <h2 class="fw400 NoSpace">Connexion</h2>
+                            <input type="text"      class="modern-text-input" placeholder="nom d'utilisateur"   name="username"/>
+                            <input type="password"  class="modern-text-input" placeholder="mot de passe"        name="password"/>
+                            <div class="actions">
+                                <a class="btn btn-very-small"  href="javascript:
+                                document.getElementById('form-inscription') .classList.remove   ('collapsed');
+                                document.getElementById('form-connexion')   .classList.add      ('collapsed');
+                                ">
+                                    créer un compte ?
+                            </a>
+                                <button id="btnConnexion" class="btn btn-small">
+                                    Connexion
+                                </button>
+                            </div>
+                        </form>
+                        <form id="form-inscription" class="inscription collapsible collapsed">
+                            <h2 class="fw400 NoSpace">Inscription</h2>
+                            <input type="text"      class="modern-text-input" placeholder="nom d'utilisateur"           name="username"/>
+                            <input type="password"  class="modern-text-input" placeholder="mot de passe"                name="password"/>
+                            <input type="password"  class="modern-text-input" placeholder="confirmer le mot de passe"   name="confirmPassword"/>
+                            <div class="actions">
+                                <a class="btn btn-very-small" href="javascript:
+                                document.getElementById('form-inscription') .classList.add      ('collapsed');
+                                document.getElementById('form-connexion')   .classList.remove   ('collapsed');
+                                ">
+                                    se connecter ?
+                                </a>
+                                <button id="btnInscription" class="btn btn-small">
+                                    Inscription
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <footer>
+            <p>
+                &copy; 2025 Projet Etudiant
+                <br>
+                Licence 3 MIASHS-MIAGE
+            </p>
+            <ul>
+                <li>UE Conception, Programmation et Développement</li>
+                <li>Application Web (SLUG602-1)</li>
+            </ul>
+        </footer>
+    </body>
+
+</html>
