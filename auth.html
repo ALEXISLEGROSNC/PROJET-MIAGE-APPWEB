@@ -118,6 +118,7 @@
         console.log("login...");
         if(AuthenticationManager.login(username,password)){
             alert("connexion reussie");
+            window.location.href='index.html#jeux';
         } else {
             alert("echec de la connection");
         }
@@ -127,6 +128,7 @@
         console.log("register...");
         if(AuthenticationManager.register(username,password)){
             alert("inscription reussie");
+            window.location.href='index.html#jeux'
         } else {
             alert("echec de l'inscription'");
         }
