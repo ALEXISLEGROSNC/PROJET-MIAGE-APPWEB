@@ -149,6 +149,8 @@ html {
             }
             #contact{
                 text-align: center;
+                justify-content: center;
+                align-items: center;
                 display: flex;
                 flex-flow: column nowrap;
                 hr{
@@ -158,16 +160,20 @@ html {
                     background-color: white;
                     border: none;
                 }
-                table{    
-                    text-align: center;
-                    tbody{
-                        tr{
-                            td{
-                                padding: 0.5rem;
+                div{
+                    table{
+                        width:auto;
+                        text-align: center;
+                        tbody{
+                            tr{
+                                td{
+                                    padding: 0.5rem;
+                                }
                             }
                         }
                     }
                 }
+                
             }
         }
         footer {
