@@ -1,0 +1,55 @@
+body {
+    color: white;
+    display: flex;
+    height: 100%;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.gradient-bg {
+    background: linear-gradient(180deg,
+            rgba(20, 25, 30, 1) 0%,
+            rgba(51, 28, 70, 1) 100%);
+}
+
+section {
+    display: flex;
+}
+
+#myCanvas {
+    border: 1px solid black;
+    background-color: lightgrey;
+}
+
+#TitleContainer {
+    margin: 0px 0px 0px 0px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+        padding: 0%;
+        margin: 0%;
+        font-size: 2rem;
+    }
+
+    h2 {
+        padding: 0%;
+        margin: 0%;
+        font-size: 1.5rem;
+    }
+}
+section {
+    padding: 1em;
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+
+    #myCanvas {
+        height: 500px;
+        width: 500px;
+    }
+}

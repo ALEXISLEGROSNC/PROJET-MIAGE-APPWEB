@@ -59,6 +59,22 @@ class AuthenticationManager {
         return false;
     }
 
+    static getUsername() {
+        const authCookie = this.getCookie(AuthenticationManager.COOKIE_NAME);
+        if (authCookie) {
+            console.log(`Auth cookie found: ${authCookie}`);
+            const { username, password } = JSON.parse(authCookie);
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(user => user.username === username && user.password === password);
+            if (user) {
+                console.log(`Logged-in username: ${username}`);
+                return username;
+            }
+        }
+        console.log('No logged-in user found.');
+        return null; // not ok !!!!
+    }
+
     static logout() {
         this.setCookie(AuthenticationManager.COOKIE_NAME, '', -1); // simulation de revocation de token
     }

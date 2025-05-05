@@ -1,0 +1,118 @@
+#GameContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding:1em;
+    
+    #infos {
+        display: flex;
+        flex-flow: row nowrap;
+        padding: 0.5em;
+        margin: 1.5em 0% 0.5em 0%;
+        align-items: center;
+        justify-content: space-between;
+
+        background-color: black;
+        border-color: grey;
+        border: solid 2px;
+        border-radius: 5px;
+
+        button {
+            padding: 0.5em 1em;
+            margin: 0em 0.5em;
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: white;
+            color: black;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            background-color: black;
+            color: white;
+            transform: scale(0.95);
+        }
+
+        .exit-button {
+            background-color: transparent;
+            color: red;
+            border: 2px solid red;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        .exit-button:hover {
+            background-color: red;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .exit-button:active {
+            background-color: darkred;
+            color: white;
+            transform: scale(0.95);
+        }
+
+        div {
+            margin: 0em 1em;
+        }
+    }
+
+    #grille {
+        display:block;
+        margin:0%;
+        padding: 1px;
+        width:500px;
+        height:500px;
+        background-color: aliceblue;
+        border-radius: 5px;
+        padding:0.3em;
+        div {
+            /* display: flex; */
+            position:absolute;
+            /* top:0px;
+            left:0px; */
+
+            height: 93px;
+            width: 93px;
+            margin: 1px;
+            aspect-ratio: 1;
+            border: solid 2px;
+            border-radius: 2px;
+            opacity: 1;
+        }
+        div:hover{
+            opacity: 0.5;
+        }
+        .c1 {
+            background-color: red;
+            border-color: darkred;
+        }
+        .c2 {
+            background-color: lightgreen;
+            border-color: green;
+        }
+        .c3 {
+            background-color: yellow;
+            border-color: orange;
+        }
+        .c4 {
+            background-color: cyan;
+            border-color: darkcyan;
+        }
+        .c5 {
+            background-color: pink;
+            border-color: violet;
+        }
+    }
+}

@@ -1,0 +1,27 @@
+
+/*** FONTS ***/
+/* Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+/* Lato */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+.font-montserrat{   font-family: Montserrat;}
+.font-lato{         font-family: Lato; }
+
+.fw100{font-weight: 100;}
+.fw200{font-weight: 200;}
+.fw300{font-weight: 300;}
+.fw400{font-weight: 400;}
+.fw400{font-weight: 500;}
+
+
+/*** SHORTCUTS ***/
+
+.display-none{
+    display:none!important;
+}
+
+.NoSpace{
+    margin:0px;
+    padding:0px;
+}

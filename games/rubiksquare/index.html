@@ -1,47 +1,61 @@
-<html>
-    <head>
-        <title>PlaySphere</title>
-        <link rel="stylesheet" type="text/css" href="../../assets/css/styles.css">
-        <link rel="stylesheet" type="text/css" href="../../assets/css/utils.css">
-        <link rel="stylesheet" type="text/css" href="../../assets/css/buttons.css">
-        <script src="../../public/js/com/auth.js"></script>   <!-- Authentication manager -->
-    </head>
-    <body onload="
+<html lang="fr">
+
+<head>
+    <title>DOMGame</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/game.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/utils.css">
+    <link rel="stylesheet" href="css/animation.css">
+    <script type="module" src="js/init.js"></script>
+    <script src="../../public/js/com/scores.js"></script>   <!-- Scores manager -->
+    <script src="../../public/js/com/auth.js"></script>   <!-- Authentication manager -->
+    
+</head>
+
+<body class="gradient-bg font-montserrat NoSpace">
+    <script>
         if(AuthenticationManager.isLoggedIn()){
             console.log('User is logged in');
         } else {
             window.location.href='../../auth.html'
         }
-    ">
-        <nav>
-            <h1 class="logo" onclick="window.location.href='../../index.html'">
-                <div class="sphere un"></div>
-                    PlaySphere
-            </h1>
-            <ul>
-                <li><a href="../../index.html#bienvenue">Accueil</a></li>
-                <li><a href="../../index.html#jeux">Jeux</a></li>
-                <li><a href="../../index.html#contact">Contact</a></li>
-                <li><a href="../../auth.html" class="btn-small" onclick="AuthenticationManager.logout()" >Déconnexion</a></li>
-            </ul>
-        </nav>
-        <div class="sections">
-            <section id="GAME">
-                <h2>🧊 Rubik's Square</h2>
-
-            </section>
+    </script>
+    <section id="TitleContainer" class="">
+        <h1>🧊 Rubik’s Square</h1>
+    </section>
+    <section id="GameContainer" class="NoSpace"> <!-- JEU ICI -->
+        <div id="grille">
+            <!-- GRILLE 5x5 -->
         </div>
-        <footer>
-            <p>
-                &copy; 2025 Projet Etudiant
-                <br>
-                Licence 3 MIASHS-MIAGE
-            </p>
-            <ul>
-                <li>UE Conception, Programmation et Développement</li>
-                <li>Application Web (SLUG602-1)</li>
-            </ul>
-        </footer>
-    </body>
+            
+        <div id="infos">
+            
+            <div id="infosText">Niveau : 1, Mouvements : 0, Temps : 0s</div>
+            <div id="score">Score : 0</div>
+            <div id="bestScore">Best Score : 0</div>
+            
+            <button id="resetButton">Reset</button>
+            <button class="exit-button" 
+            href="../../index.html"
+            onclick="OnExit();"
+            >Exit</button>
+        </div>
 
+    </section>
+    <div></div>
+</body>
+<script>
+    function OnExit(){
+        let username = AuthenticationManager.getUsername();
+        let score = window.USERSCORE;
+        ScoreManager.store(
+            username,
+            window.USERSCORE, // in init script
+            'rubiks' // gameName
+        );
+        alert("Nouveau score enregistré pour " + username + " ! -> "+ score)
+        window.location.href='../../index.html'
+    }
+</script>
 </html>
