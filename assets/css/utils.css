@@ -1,0 +1,35 @@
+.vh100{
+    height:100vh;
+}
+.vw100{
+    width:100vw;
+}
+.display-none{
+    display:none!important;
+}
+.collapsible{
+    transition: 0.5s;
+    *{
+    transition: 0.5s;
+    }
+}
+.collapsed{
+    height:0%;
+    overflow-y: hidden;
+    opacity:0;
+    *{
+        transition: 0.5s!important;
+        height:0px;
+        overflow-y: hidden;
+        opacity:0;
+    }
+}
+
+.o5{
+    opacity:0.5;
+}
+
+.NoSpace{
+    margin:0px;
+    padding:0px;
+}

@@ -1,0 +1,58 @@
+/*** BUTTONS ***/
+button {
+    font-size:inherit;
+    font-weight:inherit;
+
+    cursor: pointer;
+}
+
+/* transparent to purple*/
+.btn-small {
+    
+    border-radius:5px;
+    padding:0.3em 0.7em 0.3em 0.7em;
+    text-decoration: none;
+    background-color: transparent;
+    border: var(--violet) solid 1px;
+    color:var(--violet);
+}
+.btn-small:hover {
+    background-color: var(--violet);
+    color:white;
+    transition:0.5s;
+}
+.btn-very-small {
+    text-decoration: none;
+    background-color: transparent;
+    border:none;
+    padding:0em 1em 0em 1em ;
+    color:var(--violet);
+    opacity:0.5;
+}
+.btn-very-small:hover {
+    color:white;
+    transition:0.5s;
+    opacity:1;
+}
+/* purple to transparent */
+.btn-call-to-action {
+    border-radius:10px;
+    padding:15px 20px;
+
+    background-color: var(--violet);
+    border: var(--violet) solid 1px;
+    color:white;
+}
+.btn-call-to-action:hover {
+    background-color: transparent;
+    color:var(--violet);
+    transition:0.5s;
+}
+.btn-call-to-action.inverted {
+    background-color: transparent;
+    color:var(--violet);
+}
+.btn-call-to-action.inverted:hover {
+    background-color: var(--violet);
+    color:white;
+}

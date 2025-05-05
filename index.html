@@ -1,0 +1,143 @@
+<html>
+    <head>
+        <title>PlaySphere</title>
+        <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/utils.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/buttons.css">
+        <script src="assets/js/script.js"></script>
+    </head>
+    <body>
+        <nav>
+            <h1 class="logo">
+                <div class="sphere un"></div>
+                    PlaySphere
+            </h1>
+            <ul>
+                <li><a href="#bienvenue">Accueil</a></li>
+                <li><a href="#jeux">Jeux</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="sections">
+            <section id="bienvenue">
+                <h2>👋 Bienvenue</h2>
+                <p>
+                    Ce site web est une plateforme de jeu crée dans le cadre d'un projet étudiant en <strong>Applications Web</strong> avec <strong>Michel Buffa.
+                    <br>
+                    Pour développer ce projet nous avons utilisé les technologies suivantes :
+                    <ul>
+                        <li>HTML5</li>
+                        <li>CSS3</li>
+                        <li>JavaScript <strong>vanilla &DOM</strong></li>
+                    </ul>
+                    A cela s'ajoutent les technologies suivantes pour le développement du site :
+                    <ul>
+                        <li>API Canvas</li>
+                        <li>Babylon.Js</li>
+                    </ul>
+                </p>
+            </section>
+            
+            <section id="jeux">
+                <h2>🎮 Jeux</h2>
+                <h3>Jouez, essayez d'améliorer vos scores et affrontez vos amis !</h3>
+                <ul id="gamesList" class="NoSpace">
+                    <li>
+                        <h1 class="fadein">🧊 Rubik's Square</h1>
+                        <img src="images/rubiks.png">
+                        <p class="fadein">Un jeu inspiré du Rubik's Cube réalisé avec le DOM ! Dans ce jeu de rapidité et de reflexion, essayez d'aller le plus loin dans les niveaux de difficulté avant la fin du temps.</p>
+                        <div class="fadein actions">
+                            <button class="btn-call-to-action inverted"> Scores </button>
+                            <button class="btn-call-to-action"> Jouer </button>
+                        </div>
+                    </li>
+                    <li>
+                        <h1 class="fadein">🏀 Basket Canvas</h1>
+                        <img src="images/basket.png">
+                        <p class="fadein">Un jeu de basket développé avec l'API Canvas ! Challengez vos amis dans ce jeu de précision (et de patience starfoula la souris) et devenez trop fort gg</p>
+                        <div class="fadein actions">
+                            <button class="btn-call-to-action inverted"
+                            onclick="ModalManager.createModal('<h1>Titre de la modale</h1><p>Contenu de la modale</p>');">
+                                Scores
+                            </button>
+                            <button class="btn-call-to-action"> Jouer </button>
+                        </div>
+                    </li>
+                    <li>
+                        <h1 class="fadein">☕ Sukr</h1>
+                        <img src="images/sukr.png">
+                        <p class="fadein">Vous préferez le sucre blanc ou le sucre roux ? Dans ce jeu d'action codé avec Babylon.Js et inspiré du cafédelamachine&copy; en multijoueur local, affrontez vos adversaires et prouvez la superiorité de votre sucre !</p>
+                        <div class="fadein actions">
+                            <button class="btn-call-to-action inverted"> Scores </button>
+                            <button class="btn-call-to-action"> Jouer </button>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+                <section id="contact">
+                    <h2>☎️ Contact</h2>
+                    <p>
+                        Vous avez une question, une suggestion ou un problème ? N'hésitez pas à nous contacter !
+                    </p>
+                    <hr>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Email</th>
+                                <th>GitHub</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Alexis Legros</td>
+                                <td>
+                                    <a class="btn-small" 
+                                    href="mailto:alexis.legros@etu.unice.fr"
+                                    title="alexis.legros@etu.unice.fr">
+                                        contacter
+                                    </a>
+                                </td>
+                                <td><a class="btn-small" href="https://github.com/ALEXISLEGROSNC">@ALEXISLEGROSNC</a></td>
+                            </tr>
+                            <tr>
+                                <td>Beatriz Moura</td>
+                                <td>
+                                    <a class="btn-small" 
+                                    href="mailto:beatriz.moura@etu.unice.fr"
+                                    title="beatriz.moura@etu.unice.fr">
+                                        contacter
+                                    </a>
+                                </td>
+                                <td><a class="btn-small" href="https://github.com/BeaMoura0906">@BeaMoura0906</a></td>
+                            </tr>
+                            <tr>
+                                <td>Damien Pizarro</td>
+                                <td>
+                                    <a class="btn-small" 
+                                    href="mailto:damien.pizarro@etu.unice.fr"
+                                    title="damien.pizarro@etu.unice.fr">
+                                        contacter
+                                    </a>
+                                </td>
+                                <td><a class="btn-small" href="https://github.com/DEUMSS">@DEUMSS</a></td>
+                            </tr>
+                        </tbody>
+                            
+                    </table>
+                </section>
+        </div>
+        <footer>
+            <p>
+                &copy; 2025 Projet Etudiant
+                <br>
+                Licence 3 MIASHS-MIAGE
+            </p>
+            <ul>
+                <li>UE Conception, Programmation et Développement</li>
+                <li>Application Web (SLUG602-1)</li>
+            </ul>
+        </footer>
+    </body>
+
+</html>
