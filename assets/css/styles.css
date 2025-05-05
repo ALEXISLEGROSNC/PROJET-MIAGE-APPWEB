@@ -61,6 +61,10 @@ html {
                 font-size: 1.5em;
 
                 z-index: 0;
+
+                &:hover{
+                    cursor: pointer;
+                }
                 
                 .sphere{
                     padding: 0px;

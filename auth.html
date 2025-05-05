@@ -5,20 +5,18 @@
         <link rel="stylesheet" type="text/css" href="assets/css/utils.css">
         <link rel="stylesheet" type="text/css" href="assets/css/buttons.css">
         <link rel="stylesheet" type="text/css" href="assets/css/auth.css">
-
-        <script src="js/auth.js"></script>   <!-- Authentication manager -->
-        <script src="assets/js/script.js"></script>
-    </head>
+        <script src="public/js/com/auth.js"></script>   <!-- Authentication manager -->
+</head>
     <body style="height: 100vh;">
         <nav>
-            <h1 class="logo">
+            <h1 class="logo" onclick="window.location.href='index.html'">
                 <div class="sphere un"></div>
                     PlaySphere
             </h1>
             <ul>
-                <li><a href="#bienvenue">Accueil</a></li>
-                <li><a href="#jeux">Jeux</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="index.html#bienvenue">Accueil</a></li>
+                <li><a href="index.html#jeux">Jeux</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
                 <li><a href="auth.html" class="btn-small" >Connexion</a></li>
             </ul>
         </nav>
@@ -75,5 +73,64 @@
             </ul>
         </footer>
     </body>
+    <script> 
+        document.addEventListener('DOMContentLoaded', function() { // CONNEXION
+        const form = document.getElementById('form-connexion');
 
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = form.querySelector('input[name="username"]').value;
+            const password = form.querySelector('input[name="password"]').value;
+
+            if (username === '' || password === '') {
+                alert('Tous les champs ne sont pas remplis !');
+            } else {
+                console.log("login...");
+                tryLogin(username,password);
+            }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() { // INSCRIPTION
+        const form = document.getElementById('form-inscription');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = form.querySelector('input[name="username"]').value;
+            const password = form.querySelector('input[name="password"]').value;
+            const confirmPassword = form.querySelector('input[name="confirmPassword"]').value;
+
+            if (username === '' || password === '' || confirmPassword === '') {
+                alert('Tous les champs ne sont pas remplis !');
+            } else {
+                if (username === '' || password === '' || confirmPassword === '') {
+                    alert('les mots de passe ne correspondent pas !')
+                } else {
+                    tryRegister(username,password);
+                }
+            }
+        });
+    });
+
+    function tryLogin(username,password){
+        console.log("login...");
+        if(AuthenticationManager.login(username,password)){
+            alert("connexion reussie");
+        } else {
+            alert("echec de la connection");
+        }
+        // todo : + redirect ?
+    }
+    function tryRegister(username,password){
+        console.log("register...");
+        if(AuthenticationManager.register(username,password)){
+            alert("inscription reussie");
+        } else {
+            alert("echec de l'inscription'");
+        }
+        // todo : + redirect ?
+    }
+    </script>
 </html>

@@ -4,13 +4,15 @@
         <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
         <link rel="stylesheet" type="text/css" href="assets/css/utils.css">
         <link rel="stylesheet" type="text/css" href="assets/css/buttons.css">
-        
-        <script src="js/auth.js"></script>   <!-- Authentication manager -->
-        <script src="assets/js/script.js"></script>
+        <script src="public/js/com/auth.js"></script>   <!-- Authentication manager -->
     </head>
-    <body>
+    <body onload="
+        if(AuthenticationManager.isLoggedIn()){
+            document.getElementById('authbutton').innerText = 'Déconnexion';
+        }
+    ">
         <nav>
-            <h1 class="logo">
+            <h1 class="logo" onclick="window.location.href='index.html'">
                 <div class="sphere un"></div>
                     PlaySphere
             </h1>
@@ -18,7 +20,17 @@
                 <li><a href="#bienvenue">Accueil</a></li>
                 <li><a href="#jeux">Jeux</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="auth.html" class="btn-small" >Connexion</a></li>
+                <li><a id="authbutton" href="auth.html" class="btn-small"
+                onclick="
+                if(AuthenticationManager.isLoggedIn()){
+                    console.log('User is logged in -> disconnecting');
+                    AuthenticationManager.logout();
+                    return true;
+                } else {
+                    console.log('User is NOT logged in');
+                    return true;
+                }"
+                >Authentification</a></li>
             </ul>
         </nav>
         <div class="sections">
@@ -51,7 +63,8 @@
                         <p class="fadein">Un jeu inspiré du Rubik's Cube réalisé avec le DOM ! Dans ce jeu de rapidité et de reflexion, essayez d'aller le plus loin dans les niveaux de difficulté avant la fin du temps.</p>
                         <div class="fadein actions">
                             <button class="btn-call-to-action inverted"> Scores </button>
-                            <button class="btn-call-to-action"> Jouer </button>
+                            <button class="btn-call-to-action"
+                            onclick="window.location.href='games/rubiksquare/index.html'"> Jouer </button>
                         </div>
                     </li>
                     <li>
