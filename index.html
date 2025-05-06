@@ -5,6 +5,7 @@
         <link rel="stylesheet" type="text/css" href="assets/css/utils.css">
         <link rel="stylesheet" type="text/css" href="assets/css/buttons.css">
         <script src="public/js/com/auth.js"></script>   <!-- Authentication manager -->
+        <script src="../../public/js/com/scores.js"></script>   <!-- Scores manager -->
     </head>
     <body onload="
         if(AuthenticationManager.isLoggedIn()){
@@ -62,9 +63,10 @@
                         <img src="images/rubiks.png">
                         <p class="fadein">Un jeu inspiré du Rubik's Cube réalisé avec le DOM ! Dans ce jeu de rapidité et de reflexion, essayez d'aller le plus loin dans les niveaux de difficulté avant la fin du temps.</p>
                         <div class="fadein actions">
-                            <button class="btn-call-to-action inverted"> Scores </button>
+                            <button class="btn-call-to-action inverted"
+                            onclick="ScoreManager.generateScoreModal('rubiks');"> Scores </button>
                             <button class="btn-call-to-action"
-                            onclick="window.location.href='games/rubiksquare/index.html'"> Jouer </button>
+                            onclick="window.location.href='games/rubiksquare/index.html'"> 👤 Jouer </button>
                         </div>
                     </li>
                     <li>
@@ -73,11 +75,11 @@
                         <p class="fadein">Un jeu de basket développé avec l'API Canvas ! Challengez vos amis dans ce jeu de précision (et de patience starfoula la souris) et devenez trop fort gg</p>
                         <div class="fadein actions">
                             <button class="btn-call-to-action inverted"
-                            onclick="ModalManager.createModal('<h1>Titre de la modale</h1><p>Contenu de la modale</p>');">
+                            onclick="ScoreManager.generateScoreModal('basket');">
                                 Scores
                             </button>
                             <button class="btn-call-to-action"
-                            onclick="window.location.href='games/basketcanvas/index.html'"> Jouer </button>
+                            onclick="window.location.href='games/basketcanvas/index.html'"> 👤 Jouer </button>
                         </div>
                     </li>
                     <li>
@@ -86,7 +88,7 @@
                         <p class="fadein">Vous préferez le sucre blanc ou le sucre roux ? Dans ce jeu d'action codé avec Babylon.Js et inspiré du cafédelamachine&copy; en multijoueur local, affrontez vos adversaires et prouvez la superiorité de votre sucre !</p>
                         <div class="fadein actions">
                             <button class="btn-call-to-action"
-                            onclick="window.location.href='games/sukr/index.html'"> Jouer </button>
+                            onclick="window.location.href='games/sukr/index.html'"> 👥 Jouer en multijoueurs local ! </button>
                         </div>
                     </li>
                 </ul>
