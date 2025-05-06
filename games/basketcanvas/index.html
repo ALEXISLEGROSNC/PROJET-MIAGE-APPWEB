@@ -1,47 +1,13 @@
-<html>
-    <head>
-        <title>PlaySphere</title>
-        <link rel="stylesheet" type="text/css" href="../../assets/css/styles.css">
-        <link rel="stylesheet" type="text/css" href="../../assets/css/utils.css">
-        <link rel="stylesheet" type="text/css" href="../../assets/css/buttons.css">
-        <script src="../../public/js/com/auth.js"></script>   <!-- Authentication manager -->
-    </head>
-    <body onload="
-        if(AuthenticationManager.isLoggedIn()){
-            console.log('User is logged in');
-        } else {
-            window.location.href='../../auth.html'
-        }
-    ">
-        <nav>
-            <h1 class="logo" onclick="window.location.href='../../index.html'">
-                <div class="sphere un"></div>
-                    PlaySphere
-            </h1>
-            <ul>
-                <li><a href="../../index.html#bienvenue">Accueil</a></li>
-                <li><a href="../../index.html#jeux">Jeux</a></li>
-                <li><a href="../../index.html#contact">Contact</a></li>
-                <li><a href="../../auth.html" class="btn-small" onclick="AuthenticationManager.logout()" >Déconnexion</a></li>
-            </ul>
-        </nav>
-        <div class="sections">
-            <section id="GAME">
-                <h2>🏀 Basket Canvas</h2>
-
-            </section>
-        </div>
-        <footer>
-            <p>
-                &copy; 2025 Projet Etudiant
-                <br>
-                Licence 3 MIASHS-MIAGE
-            </p>
-            <ul>
-                <li>UE Conception, Programmation et Développement</li>
-                <li>Application Web (SLUG602-1)</li>
-            </ul>
-        </footer>
-    </body>
-
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BasketCanvas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    <script type="module" src="js/main.js"></script>
+</head>
+<body>
+</body>
 </html>
