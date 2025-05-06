@@ -8,6 +8,9 @@ let needsReset = false;
 let ballLaunched = false;
 let level = 1;
 
+window.USERSCORE = level-1;
+updateScore(window.USERSCORE);
+
 var gameElement = document.body;
 // Création du render
 const render = Render.create({
@@ -36,7 +39,13 @@ function nextLevel(){
         moveBasket(level); // Déplace le panier
         newObstacle(); // Crée un nouvel obstacle
     }
+    updateScore(level-1)
 };
+
+function updateScore(score){
+    document.getElementById("score").innerText=score;
+    window.USERSCORE=score;
+}
 
 //Détéction de l'entrée de la balle dans le panier et de la chute de la balle
 Events.on(engine, "afterUpdate", () => {

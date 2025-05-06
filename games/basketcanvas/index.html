@@ -37,10 +37,12 @@
         }
     </script>
     <div class="gameOverlay">
+        <h2 class="scoreDisplay">Score : <span id="score">...</span></h2>
         <a class="btn-call-to-action" 
         href="../../index.html"
         onclick="OnExit();"
         >Exit</a>
+        
     </div>
     <style>
         .gameOverlay{
@@ -55,6 +57,10 @@
             align-items: center;
             padding: 1em;
             z-index: 10;
+            .btn-call-to-action{
+                text-decoration: none;
+                margin: 1em;
+            }
         }
     </style>
 </body>
