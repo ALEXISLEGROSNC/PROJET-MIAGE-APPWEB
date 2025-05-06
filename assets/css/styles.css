@@ -247,7 +247,7 @@ html {
         /* image de presentaition */
         
         position: relative;
-        img{
+        .miniature{
             position: absolute;
 
             height: 100%;
@@ -257,6 +257,25 @@ html {
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: -1;
+        }
+        .linkToGithub{
+            width: 2em;
+            height: 2em;
+            position: absolute;
+            top: 0%;
+            left: 100%;
+            transform: translate(-120%, 20%);
+            border-radius: 50%;
+            overflow: hidden;
+            img{
+                height: 100%;
+                width: 100%;
+            }
+            opacity: 1;
+            transition: opacity 0.3s;
+            &:hover{
+                opacity:0.5
+            }
         }
         overflow: hidden;
     }
