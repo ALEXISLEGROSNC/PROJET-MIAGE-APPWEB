@@ -2,6 +2,10 @@ import { attachOnclickEvents } from './events.js';
 import { moveLeft, moveRight, moveUp, moveDown } from './movement.js';
 import { wait } from '../utils/utils.js';
 
+/**
+ * Génère une grille HTML dans l'élément spécifié.
+ * @param {HTMLElement} grid - L'élément HTML où la grille sera générée.
+ */
 export function generateGrid(grid) {
 	grid.innerHTML = '';
 	let currentX = 0;
@@ -32,6 +36,10 @@ export function generateGrid(grid) {
 	attachOnclickEvents(grid);
 }
 
+/**
+ * Met à jour les positions des cellules dans la grille en fonction de leurs attributs `data-x` et `data-y`.
+ * @param {HTMLElement} grid - L'élément HTML contenant la grille.
+ */
 export function refreshPositions(grid) {
 	const elements = grid.getElementsByTagName('div');
 	Array.from(elements).forEach(element => {
@@ -39,12 +47,17 @@ export function refreshPositions(grid) {
 	});
 }
 
-let moveCount = 0;
+let moveCount = 0; // Compteur de mouvements effectués par l'utilisateur
 
-let lastRandomizeTime = Date.now();
+let lastRandomizeTime = Date.now(); // Temps de la dernière randomisation
 
-let currentLevel = 1;
+let currentLevel = 1; // Niveau actuel du jeu, initialisé à 1
 
+/**
+ * Mélange les cellules de la grille de manière aléatoire.
+ * @param {HTMLElement} grid - L'élément HTML contenant la grille.
+ * @returns {Promise<void>} Une promesse qui se résout une fois le mélange terminé.
+ */
 export async function randomizeGrid(grid) {
 	const elements = Array.from(grid.getElementsByTagName('div'));
 	const moves = [moveLeft, moveRight, moveUp, moveDown];
@@ -54,7 +67,7 @@ export async function randomizeGrid(grid) {
 		const randomElement = elements[Math.floor(Math.random() * elements.length)];
 		const randomMove = moves[Math.floor(Math.random() * moves.length)];
 		randomMove(randomElement);
-		await wait(100);
+		await wait(100); // Attendre 100 ms entre chaque mouvement pour une animation fluide
 	}
 
 	refreshPositions(grid);
@@ -62,22 +75,40 @@ export async function randomizeGrid(grid) {
 	lastRandomizeTime = Date.now();
 }
 
+/**
+ * Incrémente le niveau actuel du jeu.
+ */
 export function incrementLevel() {
 	currentLevel++;
 }
 
+/**
+ * Récupère le niveau actuel du jeu.
+ * @returns {number} Le niveau actuel du jeu.
+ */
 export function getCurrentLevel() {
 	return currentLevel;
 }
 
+/**
+ * Incrémente le compteur de mouvements effectués par l'utilisateur.
+ */
 export function incrementMoveCount() {
 	moveCount++;
 }
 
+/**
+ * Récupère le nombre de mouvements effectués par l'utilisateur.
+ * @returns {number} Le nombre de mouvements effectués par l'utilisateur.
+ */
 export function getMoveCount() {
 	return moveCount;
 }
 
+/**
+ * Récupère le temps écoulé depuis la dernière randomisation de la grille, soit depuis le début du niveau en cours.
+ * @returns {number} Le temps écoulé depuis la dernière randomisation en secondes.
+ */
 export function getElapsedTime() {
 	return Math.floor((Date.now() - lastRandomizeTime) / 1000);
 }
