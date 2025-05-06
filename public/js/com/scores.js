@@ -22,35 +22,96 @@ class ScoreManager {
         return filteredScores;
     }
 
-    static generateScoreModal(username, score, gameName) {
-        console.log(`Generating score modal for username=${username}, score=${score}, gameName=${gameName}`);
+    static generateScoreModal(gameName) {
+        // Titre user-friendly au lieu d'afficher le nom de la base
+        let displayName = gameName;
+        switch (displayName) {
+            case 'basket': displayName = 'Basket Canvas'; break;
+            case 'rubiks': displayName = 'Rubik\'s Square'; break;
+            default: console.log(`"${displayName}" is not a known game name.`); break;
+        }
+    
+        console.log(`Scores - ${displayName}`);
+        let scores = this.getAllScoresForGame(gameName);
+    
+        // On ne garde que le meilleur par utilisateur
+        const bestScores = scores.reduce((acc, { username, score }) => {
+            if (!acc[username] || acc[username] < score) {
+                acc[username] = score;
+            }
+            return acc;
+        }, {});
+    
+        // Convertir l'objet en tableau pour l'affichage
+        const filteredScores = 
+            Object.entries(bestScores)
+            .map(([username, score]) => ({ username, score }));
+    
+        // Création de la modale (les styles sont dans assets/css/styles.css)
         const modal = document.createElement('div');
-        modal.style.position = 'fixed';
-        modal.style.top = '50%';
-        modal.style.left = '50%';
-        modal.style.transform = 'translate(-50%, -50%)';
-        modal.style.padding = '20px';
-        modal.style.backgroundColor = 'white';
-        modal.style.border = '1px solid black';
-        modal.style.zIndex = '1000';
-
+        modal.classList.add('modal');
+    
+        // Titre de la modale
         const title = document.createElement('h2');
-        title.textContent = `Score for ${gameName}`;
+        title.textContent = `Scores - ${displayName}`;
         modal.appendChild(title);
+    
+        // Table (avec les scores dedans)
+        const table = document.createElement('table');
+        const thead = document.createElement('thead');
+            const headerRow = document.createElement('tr');
+                const playerHeader = document.createElement('th');
+                playerHeader.textContent = 'Joueur';
+                const scoreHeader = document.createElement('th');
+                scoreHeader.textContent = 'Meilleur Score';
+        // les add du header
+        headerRow.appendChild(playerHeader);
+        headerRow.appendChild(scoreHeader);
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+    
+        // corps de la table (scores)
+        const tbody = document.createElement('tbody');
+        if (filteredScores.length > 0) {
+            filteredScores.forEach(({ username, score }) => {
+                const row = document.createElement('tr');
+                    const playerCell = document.createElement('td');
+                    playerCell.textContent = username;
+                const scoreCell = document.createElement('td');
+                scoreCell.textContent = score;
+                // les add du tbody
+                row.appendChild(playerCell);
+                row.appendChild(scoreCell);
+                tbody.appendChild(row);
+            });
+        } else {
+            const noScoresRow = document.createElement('tr');
 
-        const content = document.createElement('p');
-        content.textContent = `${username} scored ${score} points!`;
-        modal.appendChild(content);
+                const noScoresCell = document.createElement('td');
+                noScoresCell.textContent = 'Aucune partie enregistrée !';
+                noScoresCell.colSpan = 2; // on prend toute la table puisqu'il n'y a rien dedans
 
+                noScoresRow.appendChild(noScoresCell);
+                tbody.appendChild(noScoresRow);
+        }
+    
+        table.appendChild(tbody);
+        modal.appendChild(table);
+    
+        // Bouton de fermeture
         const closeButton = document.createElement('button');
-        closeButton.textContent = 'Close';
+        closeButton.textContent = 'Fermer';
+        closeButton.classList.add('btn-small');
+        closeButton.style.marginTop = '10px';
         closeButton.onclick = () => {
-            console.log('Closing modal');
             document.body.removeChild(modal);
+            console.log('Score modal closed');
         };
+    
         modal.appendChild(closeButton);
-
+    
+        // Ajouter la modale au body
         document.body.appendChild(modal);
         console.log('Score modal displayed');
-    }
+    } 
 }
