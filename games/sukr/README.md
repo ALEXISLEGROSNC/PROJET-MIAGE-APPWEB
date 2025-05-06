@@ -67,6 +67,11 @@ La simulation utilise Havok Physics pour gérer les interactions physiques :
 <td>@BeaMoura0906</td>
 <td>beatriz.moura@etu.unice.fr</td>
 </tr>
+<tr>
+<td>Damien PIZARRO</td>
+<td>@DEUMSS</td>
+<td>damien.pizarro@etu.unice.fr</td>
+</tr>
 </tbody>
 </table>
 <br>
