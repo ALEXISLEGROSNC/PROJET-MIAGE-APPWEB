@@ -1,7 +1,8 @@
 /**
- * 
- * @param {*} grid 
- * @returns 
+ * Vérifie si la grille est dans un état de victoire.
+ * Une victoire est détectée si toutes les lignes ou toutes les colonnes ont des couleurs identiques.
+ * @param {HTMLElement} grid - L'élément HTML contenant la grille.
+ * @returns {boolean} `true` si la grille est dans un état de victoire, sinon `false`.
  */
 export function checkForWin(grid) {
     const couleurs = getGridColors(grid);
@@ -48,7 +49,6 @@ export function checkForWin(grid) {
 
     // Si toutes les lignes ou toutes les colonnes sont identiques, victoire
     if (allLinesIdentical || allColumnsIdentical) {
-        console.log("Victoire détectée : toutes les lignes ou colonnes sont identiques !");
         return true;
     }
 
@@ -56,9 +56,10 @@ export function checkForWin(grid) {
 }
 
 /**
- * 
- * @param {*} grid 
- * @returns 
+ * Récupère les couleurs des cellules de la grille sous forme de tableau 2D.
+ * Chaque cellule est identifiée par ses attributs `data-x` et `data-y`.
+ * @param {HTMLElement} grid - L'élément HTML contenant la grille.
+ * @returns {string[][]} Un tableau 2D représentant les couleurs des cellules de la grille.
  */
 function getGridColors(grid) {
     const size = Math.sqrt(grid.children.length);
@@ -75,6 +76,5 @@ function getGridColors(grid) {
         }
         couleurs.push(row);
     }
-    console.log("Couleurs récupérées :", couleurs); // Log des couleurs
     return couleurs;
 }
