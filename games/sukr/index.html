@@ -1,47 +1,70 @@
-<html>
-    <head>
-        <title>PlaySphere</title>
-        <link rel="stylesheet" type="text/css" href="../../assets/css/styles.css">
-        <link rel="stylesheet" type="text/css" href="../../assets/css/utils.css">
-        <link rel="stylesheet" type="text/css" href="../../assets/css/buttons.css">
-        <script src="../../public/js/com/auth.js"></script>   <!-- Authentication manager -->
-    </head>
-    <body onload="
-        if(AuthenticationManager.isLoggedIn()){
-            console.log('User is logged in');
-        } else {
-            window.location.href='../../auth.html'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>BABYLON Game</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <link rel="stylesheet" href="../../assets/css/buttons.css">
+    <!-- BABYLONJS -->
+    <script src="https://cdn.babylonjs.com/babylon.js" defer></script>
+    <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js" defer></script>
+    <script src="https://cdn.babylonjs.com/havok/HavokPhysics_umd.js" defer></script>
+
+    <!-- GAME INIT -->
+    <script type="module">
+        import HavokPhysics from "https://cdn.babylonjs.com/havok/HavokPhysics_es.js";
+        let havokInstance;
+        HavokPhysics().then((havok) => {
+          havokInstance = havok;
+        });
+    </script>
+    <script> // after all the dom is loaded
+        window.addEventListener('DOMContentLoaded', () => {
+            const main = Main.getInstance(
+                'game/',
+                document.getElementById('renderCanvas')
+            );
+            main.init();
+        });
+    </script>
+
+</head>
+<body onload="" cz-shortcut-listen="true">
+
+    <h1>☕ Sukr</h1>
+
+    <canvas
+        id="renderCanvas"
+        width="800"
+        height="400"
+        touch-action="none"
+        style="touch-action: none;"
+        tabindex="1">
+    </canvas>
+
+    <a class="btn-small" style="margin:2em;" href="../../index.html">Accueil</a>
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #000;
         }
-    ">
-        <nav>
-            <h1 class="logo" onclick="window.location.href='../../index.html'">
-                <div class="sphere un"></div>
-                    PlaySphere
-            </h1>
-            <ul>
-                <li><a href="../../index.html#bienvenue">Accueil</a></li>
-                <li><a href="../../index.html#jeux">Jeux</a></li>
-                <li><a href="../../index.html#contact">Contact</a></li>
-                <li><a href="../../auth.html" class="btn-small" onclick="AuthenticationManager.logout()" >Déconnexion</a></li>
-            </ul>
-        </nav>
-        <div class="sections">
-            <section id="GAME">
-                        <h2>☕ Sukr</h2>
 
-            </section>
-        </div>
-        <footer>
-            <p>
-                &copy; 2025 Projet Etudiant
-                <br>
-                Licence 3 MIASHS-MIAGE
-            </p>
-            <ul>
-                <li>UE Conception, Programmation et Développement</li>
-                <li>Application Web (SLUG602-1)</li>
-            </ul>
-        </footer>
-    </body>
+        canvas {
+            border: 1px solid #fff;
+        }
 
+        
+    </style>
+</body>
 </html>
+<script src="game/scenes/CoffeeScene.js" defer></script>
+<script src="game/main.js" defer></script>
