@@ -18,7 +18,7 @@ BasketCanvas est un jeu interactif basé sur le moteur physique **Matter.js**, o
 ### Installation
 1. Clonez le dépôt :
    ```bash
-   git clone https://github.com/votre-repo/basketcanvas.git
+   git clone https://github.com/DEUMSS/BasketCanvas
    ```
 2. Ouvrez le projet dans votre éditeur de code.
 3. Lancez un serveur local et ouvrez le fichier `index.html` dans votre navigateur.

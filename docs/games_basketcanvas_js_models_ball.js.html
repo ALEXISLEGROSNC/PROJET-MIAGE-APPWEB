@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: games/basketcanvas/js/models/ball.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: games/basketcanvas/js/models/ball.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { world, width, height, ground } from '../core/engine.js';
+
+/**
+ * Crée la balle physique
+ * @param {number} width - Largeur de la fenêtre
+ */
+//Création de la balle
+const ball = Matter.Bodies.circle(width / 2, height - 300, 20, { restitution: 0.7 });
+Matter.World.add(world, ball);
+
+let startX, startY;
+let dragging = false;
+let currentX, currentY;
+
+/**
+ * Détecte la position de la souris pour charger le tir
+ * @param {MouseEvent} event - L'événement de la souris
+ */
+//Détection de la souris pour charger le tir
+window.addEventListener("mousedown", (event) => {
+    const mousePos = { x: event.clientX, y: event.clientY };
+    if (Matter.Bounds.contains(ball.bounds, mousePos)) {
+        startX = event.clientX;
+        startY = event.clientY;
+        dragging = true;
+    }
+});
+
+/**
+ * Détecte la position de la souris pour charger le tir
+ * @param {MouseEvent} event - L'événement de la souris
+ */
+//Détéction de la souris pour charger le tir
+window.addEventListener("mousemove", (event) => {
+    if (dragging) {
+        currentX = event.clientX;
+        currentY = event.clientY;
+    }
+});
+
+let currentGround = ground; 
+
+/*function updateGround(newGround) {
+    currentGround = newGround;
+} Plus utilisée */
+
+/**
+ * Détecte la souris pour lancer la balle
+ * @param {MouseEvent} event - L'événement de la souris
+ */
+//Détection de la souris pour lancer la balle
+window.addEventListener("mouseup", (event) => {
+    if (!dragging) return;
+    dragging = false;
+    const endX = event.clientX;
+    const endY = event.clientY;
+
+    const dx = startX - endX;
+    const dy = startY - endY;
+    let magnitude = Math.sqrt(dx * dx + dy * dy) * 0.02;
+    magnitude = Math.min(magnitude, 5);
+
+    const force = Matter.Vector.normalise({ x: dx, y: dy });
+    Matter.Body.applyForce(ball, ball.position, { x: force.x * magnitude * 0.025, y: force.y * magnitude * 0.025 });
+
+    if (currentGround.isStatic) {
+        Matter.World.remove(world, currentGround);
+    }
+});
+
+/**
+ * Dessine le vecteur de force pour le tir
+ * @param {CanvasRenderingContext2D} context - Le contexte de dessin du canvas
+ */
+//Dessine le vecteur de force
+function drawVector(context) {
+    if (dragging) {
+        context.save();
+        context.beginPath();
+        context.moveTo(ball.position.x, ball.position.y);
+        context.lineTo(ball.position.x + (ball.position.x - currentX), ball.position.y - (currentY - ball.position.y));
+        context.setLineDash([5, 5]);
+        context.strokeStyle = "white";
+        context.lineWidth = 2;
+        context.stroke();
+        context.restore();
+    }
+}
+
+/**
+ * Dessine la balle sur le canvas
+ * @param {CanvasRenderingContext2D} context - Le contexte de dessin du canvas
+ */
+//Dessine la balle
+function drawBall(context) {
+    context.save();
+    context.fillStyle = "red";
+    context.translate(ball.position.x, ball.position.y);
+    context.beginPath();
+    context.arc(0, 0, 20, 0, Math.PI * 2);
+    context.fill();
+    context.restore();
+}
+
+export { ball, drawVector, drawBall };//, updateGround</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="CoffeeScene.html">CoffeeScene</a></li><li><a href="Main.html">Main</a></li><li><a href="ScoreManager.html">ScoreManager</a></li><li><a href="-_.html">_</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CellFromDom">CellFromDom</a></li><li><a href="global.html#DomFromCell">DomFromCell</a></li><li><a href="global.html#GET_SCORE">GET_SCORE</a></li><li><a href="global.html#attachOnclickEvents">attachOnclickEvents</a></li><li><a href="global.html#ball">ball</a></li><li><a href="global.html#checkForWin">checkForWin</a></li><li><a href="global.html#drawBall">drawBall</a></li><li><a href="global.html#drawBasket">drawBasket</a></li><li><a href="global.html#drawVector">drawVector</a></li><li><a href="global.html#generateGrid">generateGrid</a></li><li><a href="global.html#getCurrentLevel">getCurrentLevel</a></li><li><a href="global.html#getElapsedTime">getElapsedTime</a></li><li><a href="global.html#getGridColors">getGridColors</a></li><li><a href="global.html#getMoveCount">getMoveCount</a></li><li><a href="global.html#incrementLevel">incrementLevel</a></li><li><a href="global.html#incrementMoveCount">incrementMoveCount</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#moveBasket">moveBasket</a></li><li><a href="global.html#moveDown">moveDown</a></li><li><a href="global.html#moveLeft">moveLeft</a></li><li><a href="global.html#moveRight">moveRight</a></li><li><a href="global.html#moveUp">moveUp</a></li><li><a href="global.html#nextLevel">nextLevel</a></li><li><a href="global.html#randomizeGrid">randomizeGrid</a></li><li><a href="global.html#refreshPositions">refreshPositions</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#rimLeft">rimLeft</a></li><li><a href="global.html#updateScore">updateScore</a></li><li><a href="global.html#wait">wait</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Tue May 06 2025 15:45:21 GMT+0200 (heure d’été d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

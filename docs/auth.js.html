@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: auth.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: auth.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Classe de gestion de l'authentification
+ */
+/* CETTE CLASSE NE DOIT PAS ETRE UTILISEE EN DEHORS DE CE PROJET */
+class AuthenticationManager {
+    /**
+     * Nom du cookie utilisé pour stocker les informations d'authentification.
+     * @type {string}
+     * @constant
+     */
+    static COOKIE_NAME = 'auth';
+    /**
+     * Durée d'expiration du cookie en jours.
+     * @type {number}
+     * @constant
+     */
+    static COOKIE_EXPIRATION_DAYS = 7;
+
+    /**
+     * Enregistre un nouvel utilisateur.
+     * 
+     * @param {string} username - Nom d'utilisateur.
+     * @param {string} password - Mot de passe.
+     * @returns {boolean} Retourne `true` si l'enregistrement et la connexion réussissent, sinon `false`.
+     */
+    static register(username, password) {
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        if (users.some(user => user.username === username)) {
+            // throw new Error('Username already exists');
+            return false;
+        } else {
+            // stockage    
+            const newUser = { username, password };
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            // connexion
+            return AuthenticationManager.login(username, password);
+        }
+    }
+
+    /**
+     * Connecte un utilisateur existant.
+     * 
+     * @param {string} username - Nom d'utilisateur.
+     * @param {string} password - Mot de passe.
+     * @returns {boolean} Retourne `true` si la connexion réussit, sinon `false`.
+     */
+    static login(username, password) {
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+
+        if (users.find(user => user.username === username &amp;&amp; user.password === password)) {
+            this.setCookie(JSON.stringify({ username, password }), AuthenticationManager.COOKIE_EXPIRATION_DAYS);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Définit un cookie avec une valeur et une durée d'expiration.
+     * 
+     * @param {string} value - Valeur à stocker dans le cookie.
+     * @param {number} days - Durée d'expiration en jours.
+     */
+    static setCookie(value, days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        console.log(AuthenticationManager.COOKIE_NAME + "=" + value + ";" + "expires=" + date.toUTCString() + ";path=/");
+        document.cookie = AuthenticationManager.COOKIE_NAME + "=" + value + ";" + "expires=" + date.toUTCString() + ";path=/";
+    }
+
+    /**
+     * Récupère la valeur d'un cookie par son nom.
+     * 
+     * @param {string} name - Nom du cookie.
+     * @returns {string|null} Retourne la valeur du cookie ou `null` s'il n'existe pas.
+     */
+    static getCookie(name) {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(';');
+        for (let i = 0; i &lt; ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    /**
+     * Vérifie si un utilisateur est connecté.
+     * 
+     * @returns {boolean} Retourne `true` si un utilisateur est connecté, sinon `false`.
+     */
+    static isLoggedIn() {
+        const authCookie = this.getCookie(AuthenticationManager.COOKIE_NAME);
+        if (authCookie) {
+            console.log(authCookie); // todo del
+            const { username, password } = JSON.parse(authCookie);
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(user => user.username === username &amp;&amp; user.password === password);
+            return !!user;
+        }
+        return false;
+    }
+
+    /**
+     * Récupère le nom d'utilisateur de l'utilisateur connecté.
+     * 
+     * @returns {string|null} Retourne le nom d'utilisateur ou `null` si aucun utilisateur n'est connecté.
+     */
+    static getUsername() {
+        const authCookie = this.getCookie(AuthenticationManager.COOKIE_NAME);
+        if (authCookie) {
+            console.log(`Auth cookie found: ${authCookie}`);
+            const { username, password } = JSON.parse(authCookie);
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(user => user.username === username &amp;&amp; user.password === password);
+            if (user) {
+                console.log(`Logged-in username: ${username}`);
+                return username;
+            }
+        }
+        console.log('No logged-in user found.');
+        return null; // not ok !!!!
+    }
+
+    /**
+     * Déconnecte l'utilisateur en supprimant le cookie d'authentification.
+     */
+    static logout() {
+        this.setCookie(AuthenticationManager.COOKIE_NAME, '', -1); // simulation de revocation de token
+    }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ScoreManager.html">ScoreManager</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Tue May 06 2025 15:36:57 GMT+0200 (heure d’été d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

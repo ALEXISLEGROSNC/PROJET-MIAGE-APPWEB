@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: games/rubiksquare/js/grid/grid.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: games/rubiksquare/js/grid/grid.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { attachOnclickEvents } from './events.js';
+import { moveLeft, moveRight, moveUp, moveDown } from './movement.js';
+import { wait } from '../utils/utils.js';
+
+/**
+ * Génère une grille HTML dans l'élément spécifié.
+ * @param {HTMLElement} grid - L'élément HTML où la grille sera générée.
+ */
+export function generateGrid(grid) {
+	grid.innerHTML = '';
+	let currentX = 0;
+	let currentY = 0;
+
+	const colorClasses = ['c1', 'c2', 'c3', 'c4', 'c5'];
+
+	const size = 5;
+
+	for (let i = 0; i &lt; size * size; i++) {
+		const cell = document.createElement('div');
+		cell.setAttribute('data-x', currentX);
+		cell.setAttribute('data-y', currentY);
+
+		const colorClass = colorClasses[currentY % colorClasses.length];
+		cell.classList.add('cell', colorClass);
+		cell.setAttribute('data-color', colorClass);
+
+		grid.appendChild(cell);
+		currentX++;
+		
+		if (currentX === size) {
+			currentX = 0;
+			currentY++;
+		}
+	}
+
+	attachOnclickEvents(grid);
+}
+
+/**
+ * Met à jour les positions des cellules dans la grille en fonction de leurs attributs `data-x` et `data-y`.
+ * @param {HTMLElement} grid - L'élément HTML contenant la grille.
+ */
+export function refreshPositions(grid) {
+	const elements = grid.getElementsByTagName('div');
+	Array.from(elements).forEach(element => {
+		element.style.transform = `translate(${element.dataset.x * 100}px, ${element.dataset.y * 100}px)`;
+	});
+}
+
+let moveCount = 0; // Compteur de mouvements effectués par l'utilisateur
+
+let lastRandomizeTime = Date.now(); // Temps de la dernière randomisation
+
+let currentLevel = 1; // Niveau actuel du jeu, initialisé à 1
+
+/**
+ * Mélange les cellules de la grille de manière aléatoire.
+ * @param {HTMLElement} grid - L'élément HTML contenant la grille.
+ * @returns {Promise&lt;void>} Une promesse qui se résout une fois le mélange terminé.
+ */
+export async function randomizeGrid(grid) {
+	const elements = Array.from(grid.getElementsByTagName('div'));
+	const moves = [moveLeft, moveRight, moveUp, moveDown];
+	const numMoves = currentLevel + 2;
+
+	for (let i = 0; i &lt; numMoves; i++) {
+		const randomElement = elements[Math.floor(Math.random() * elements.length)];
+		const randomMove = moves[Math.floor(Math.random() * moves.length)];
+		randomMove(randomElement);
+		await wait(100); // Attendre 100 ms entre chaque mouvement pour une animation fluide
+	}
+
+	refreshPositions(grid);
+	moveCount = 0;
+	lastRandomizeTime = Date.now();
+}
+
+/**
+ * Incrémente le niveau actuel du jeu.
+ */
+export function incrementLevel() {
+	currentLevel++;
+}
+
+/**
+ * Récupère le niveau actuel du jeu.
+ * @returns {number} Le niveau actuel du jeu.
+ */
+export function getCurrentLevel() {
+	return currentLevel;
+}
+
+/**
+ * Incrémente le compteur de mouvements effectués par l'utilisateur.
+ */
+export function incrementMoveCount() {
+	moveCount++;
+}
+
+/**
+ * Récupère le nombre de mouvements effectués par l'utilisateur.
+ * @returns {number} Le nombre de mouvements effectués par l'utilisateur.
+ */
+export function getMoveCount() {
+	return moveCount;
+}
+
+/**
+ * Récupère le temps écoulé depuis la dernière randomisation de la grille, soit depuis le début du niveau en cours.
+ * @returns {number} Le temps écoulé depuis la dernière randomisation en secondes.
+ */
+export function getElapsedTime() {
+	return Math.floor((Date.now() - lastRandomizeTime) / 1000);
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="CoffeeScene.html">CoffeeScene</a></li><li><a href="Main.html">Main</a></li><li><a href="ScoreManager.html">ScoreManager</a></li><li><a href="-_.html">_</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CellFromDom">CellFromDom</a></li><li><a href="global.html#DomFromCell">DomFromCell</a></li><li><a href="global.html#GET_SCORE">GET_SCORE</a></li><li><a href="global.html#attachOnclickEvents">attachOnclickEvents</a></li><li><a href="global.html#ball">ball</a></li><li><a href="global.html#checkForWin">checkForWin</a></li><li><a href="global.html#drawBall">drawBall</a></li><li><a href="global.html#drawBasket">drawBasket</a></li><li><a href="global.html#drawVector">drawVector</a></li><li><a href="global.html#generateGrid">generateGrid</a></li><li><a href="global.html#getCurrentLevel">getCurrentLevel</a></li><li><a href="global.html#getElapsedTime">getElapsedTime</a></li><li><a href="global.html#getGridColors">getGridColors</a></li><li><a href="global.html#getMoveCount">getMoveCount</a></li><li><a href="global.html#incrementLevel">incrementLevel</a></li><li><a href="global.html#incrementMoveCount">incrementMoveCount</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#moveBasket">moveBasket</a></li><li><a href="global.html#moveDown">moveDown</a></li><li><a href="global.html#moveLeft">moveLeft</a></li><li><a href="global.html#moveRight">moveRight</a></li><li><a href="global.html#moveUp">moveUp</a></li><li><a href="global.html#nextLevel">nextLevel</a></li><li><a href="global.html#randomizeGrid">randomizeGrid</a></li><li><a href="global.html#refreshPositions">refreshPositions</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#rimLeft">rimLeft</a></li><li><a href="global.html#updateScore">updateScore</a></li><li><a href="global.html#wait">wait</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Tue May 06 2025 15:45:21 GMT+0200 (heure d’été d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

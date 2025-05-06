@@ -19,7 +19,7 @@ Rubik’s Square est un jeu basé sur le DOM où l'objectif est de réorganiser 
 ### Installation
 1. Clonez le dépôt :
    ```bash
-   git clone https://github.com/votre-repo/rubiksquare.git
+   git clone https://github.com/ALEXISLEGROSNC/DOMGame
    ```
 2. Ouvrez le projet dans votre éditeur de code.
 3. Lancez un serveur local et ouvrez le fichier index.html dans votre navigateur.
