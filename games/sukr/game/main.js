@@ -1,35 +1,68 @@
+/**
+ * Classe principale du jeu utilisant une architecture Singleton.
+ */
 class Main {
+    /**
+     * Retourne l'instance unique de la classe Main.
+     * @returns {Main} L'instance unique de la classe Main.
+     */
     // SINGLETON ARCHITECTURE
     static getInstance() {
         this.getInstance(this.canvas);
     }
+
+    /**
+     * Crée ou retourne l'instance unique de la classe Main.
+     * @param {string} gameSource - Le chemin source des ressources du jeu.
+     * @param {HTMLCanvasElement} canvas - L'élément canvas HTML utilisé pour le rendu.
+     * @returns {Main} L'instance unique de la classe Main.
+     */
     static getInstance(gameSource,canvas) {
         if (!Main.instance) {
             Main.instance = new Main(gameSource,canvas);
         }
         return Main.instance;
     }
+
+    /**
+     * Constructeur de la classe Main.
+     * @param {string} gameSource - Le chemin source des ressources du jeu.
+     * @param {HTMLCanvasElement} canvas - L'élément canvas HTML utilisé pour le rendu.
+     */
     constructor(gameSource,canvas) {
         if (Main.instance) return Main.instance;    // if already created, return the instance
         Main.instance = this;                       // if not set the instance to this
         // min
+        /** @type {string} Chemin source des ressources du jeu. */
         this.gameSource = gameSource;
+        /** @type {HTMLCanvasElement} Élément canvas HTML utilisé pour le rendu. */
         this.canvas = canvas;
+        /** @type {BABYLON.Engine} Moteur Babylon.js pour le rendu 3D. */
         this.engine = new BABYLON.Engine(canvas, true);
 
         // game main utils
+        /** @type {object|null} Scène actuelle du jeu. */
         this.currentScene = null;
+        /** @type {object} État des entrées utilisateur. */
         this.inputStates = {};
 
         // other things to do
         this.others();
     }
+
+    /**
+     * Retourne le répertoire des assets du jeu.
+     * @returns {string} Le chemin du répertoire des assets.
+     */
     // config
     static getAssetsDir() {
         return this.getInstance().gameSource+"assets/";
     }
 
-    // important part of the code starts here
+    /**
+     * Définit la scène actuelle et configure la logique des entrées.
+     * @param {object} argScene - La scène à définir comme scène actuelle.
+     */
     setScene(argScene) {
         this.currentScene = argScene;
         this.setInputLogic(argScene,this.inputStates);
@@ -41,10 +74,19 @@ class Main {
         });
     }
 
+    /**
+     * Initialise le jeu en chargeant la scène CoffeeScene.
+     * @async
+     */
     // INIT
     async init() {
         await this.setCoffeeScene();
     }
+
+    /**
+     * Charge et définit la scène CoffeeScene.
+     * @async
+     */
     async setCoffeeScene() {
         console.log("setCoffeeScene");
         this.setScene(
@@ -52,6 +94,11 @@ class Main {
         );
     }
     
+    /**
+     * Configure la logique des entrées utilisateur pour une scène donnée.
+     * @param {object} sceneContainer - Conteneur de la scène.
+     * @param {object} inputStates - États des entrées utilisateur.
+     */
     // INPUT LOGIC : lock and input states
     setInputLogic(sceneContainer,inputStates) {
         let scene = sceneContainer.scene;
@@ -259,6 +306,10 @@ class Main {
         }, false);
 
     }
+
+    /**
+     * Configure les événements supplémentaires (ex. redimensionnement de la fenêtre).
+     */
     others() {
         // Resize
         window.addEventListener("resize", () => {

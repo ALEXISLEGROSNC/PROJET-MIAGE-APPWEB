@@ -1,30 +1,62 @@
+/**
+ * Classe représentant la scène CoffeeScene.
+ * Cette scène inclut les joueurs, un mug, du café et les interactions physiques.
+ */
 class CoffeeScene {
     
+    /**
+     * Constructeur de la classe CoffeeScene.
+     * @param {BABYLON.Engine} engine - Le moteur Babylon.js utilisé pour le rendu.
+     * @param {HTMLCanvasElement} canvas - L'élément canvas HTML utilisé pour le rendu.
+     * @throws {Error} Si le moteur n'est pas défini.
+     */
     constructor(engine, canvas) {
         if (!engine) {
             throw new Error("Engine is not defined");
         }
+
+        /** @type {BABYLON.Scene} Scène Babylon.js. */
         this.scene = new BABYLON.Scene(engine);
+        /** @type {BABYLON.Engine} Moteur Babylon.js. */
         this.engine = engine;
+        /** @type {HTMLCanvasElement} Élément canvas HTML. */
         this.canvas = canvas;
-
+        /** @type {BABYLON.Mesh|null} Joueur 1. */
         this.player1 = null;
+        /** @type {BABYLON.Mesh|null} Joueur 2. */
         this.player2 = null;
+        /** @type {BABYLON.Mesh|null} Mug dans la scène. */
         this.mug = null;
-
+        /** @type {string|null} Gagnant de la partie. */
         this.winner = null;
         
     }
 
+    /**
+     * Initialise le moteur physique Havok pour la scène.
+     * @async
+     */
     async initHavok(){
+        /** @type {any} Instance de Havok Physics. */
         this.havokInstance = await HavokPhysics();
+        /** @type {BABYLON.HavokPlugin} Plugin Havok pour Babylon.js. */
         this.havokPlugin = new BABYLON.HavokPlugin(true, this.havokInstance);
+
         this.scene.enablePhysics(new BABYLON.Vector3(0, -9.8, 0), this.havokPlugin);
     }
+
+    /**
+     * Initialise la scène en configurant la physique et en créant les objets.
+     * @async
+     */
     async init() {
         await this.initHavok();
         this.createScene();
     }
+
+    /**
+     * Crée les éléments de la scène, y compris les lumières, le sol, les joueurs et les objets.
+     */
     createScene() {
         
         // scene
@@ -152,6 +184,12 @@ class CoffeeScene {
         this.setupPlayers(player1, player2,ground);
     }
 
+    /**
+     * Configure les joueurs et leurs interactions physiques.
+     * @param {BABYLON.Mesh} player1 - Joueur 1.
+     * @param {BABYLON.Mesh} player2 - Joueur 2.
+     * @param {BABYLON.Mesh} ground - Sol de la scène.
+     */
     setupPlayers(player1,player2,ground) {
 
         const player1Aggregate = new BABYLON.PhysicsAggregate(
@@ -288,6 +326,10 @@ class CoffeeScene {
         return player1Aggregate;
     }
 
+    /**
+     * Déclare le gagnant de la partie et affiche un message.
+     * @param {string} winner - Nom du gagnant.
+     */
     declareWinner(winner) {
         if (this.winner) return;
         this.winner = winner;
@@ -325,6 +367,6 @@ class CoffeeScene {
     }
 
     resetScene() {
-        // trop galere là j'en peux plus
+        // TODO
     }
 }
