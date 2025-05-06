@@ -29,6 +29,29 @@ class CoffeeScene {
         this.mug = null;
         /** @type {string|null} Gagnant de la partie. */
         this.winner = null;
+
+        /** @type {BABYLON.Vector3|null} hauteur de la position de depart des joueurs(sucres). */
+        this.sukrHeight = 1.3;
+        /** @type {BABYLON.Vector3|null} Position du mug (arene). */
+        this.mugPosition = new BABYLON.Vector3(0, 0, -1);
+        
+        this.spawnpoint1Object = {
+            x:this.mugPosition.x-0.4,
+            y:this.mugPosition.y+this.sukrHeight,
+            z:this.mugPosition.z
+        }
+        this.spawnpoint2Object = {
+            x:this.mugPosition.x+0.4,
+            y:this.mugPosition.y+this.sukrHeight,
+            z:this.mugPosition.z
+        }
+        
+        /** @type {BABYLON.Vector3|null} Position de départ du joueur 1 (sucre blanc). */
+        this.spawnPoint1 = new BABYLON.Vector3(this.spawnpoint1Object.x,this.spawnpoint1Object.y,this.spawnpoint1Object.z);
+        /** @type {BABYLON.Vector3|null} Position de départ du joueur 2 (sucre roux). */
+        this.spawnPoint2 = new BABYLON.Vector3(this.spawnpoint2Object.x,this.spawnpoint2Object.y,this.spawnpoint2Object.z);
+        
+        
         
     }
 
@@ -108,7 +131,6 @@ class CoffeeScene {
 
 
         // MUG
-        let mugPosition = new BABYLON.Vector3(0, 0, -1);
         let mugRotation = new BABYLON.Vector3(0, (Math.PI*4.6) / 4, 0);
         BABYLON.SceneLoader.ImportMesh(
             "",
@@ -117,7 +139,7 @@ class CoffeeScene {
             this.scene,
             (meshes, particleSystems, skeletons, animationGroups) => {
                 this.mug = meshes[0];
-                this.mug.position = mugPosition;
+                this.mug.position = this.mugPosition;
                 this.mug.rotation = mugRotation;
                 meshes[1].material = mugMaterial;
                 shadowGenerator.addShadowCaster(this.mug);
@@ -137,7 +159,7 @@ class CoffeeScene {
             height: 1.2,
             tessellation: 15
         }, this.scene);
-        this.cylinder.position = new BABYLON.Vector3(mugPosition.x, mugPosition.y+0.6+0.1, mugPosition.z);
+        this.cylinder.position = new BABYLON.Vector3(this.mugPosition.x, this.mugPosition.y+0.6+0.1, this.mugPosition.z);
         this.cylinder.material = coffeeMaterial;
         const coffeeAggregate = new BABYLON.PhysicsAggregate(
             this.cylinder,
@@ -150,7 +172,7 @@ class CoffeeScene {
         
         // camera
         let cameraPosition = new BABYLON.Vector3(0, 30, -50);
-        let cameraTarget = new BABYLON.Vector3(mugPosition.x, mugPosition.y+1, mugPosition.z);
+        let cameraTarget = new BABYLON.Vector3(this.mugPosition.x, this.mugPosition.y+1, this.mugPosition.z);
         this.camera = new BABYLON.FollowCamera("camera", cameraPosition, this.scene);
         this.camera.setTarget(cameraTarget);
         this.camera.fov = 0.05;
@@ -159,29 +181,27 @@ class CoffeeScene {
         // camera.attachControl(this.canvas, true);
 
         // players
-        let sukrHeight = 1.3;
-        let spawnPoint1 = new BABYLON.Vector3(mugPosition.x-0.4, mugPosition.y + sukrHeight, mugPosition.z);
-        let spawnPoint2 = new BABYLON.Vector3(mugPosition.x+0.4, mugPosition.y + sukrHeight, mugPosition.z);
+        
         
         let playerSize = 0.2;
 
-        let player1 = BABYLON.MeshBuilder.CreateBox("player1", {
+        this.player1 = BABYLON.MeshBuilder.CreateBox("player1", {
             size: playerSize
         }, this.scene);
-        player1.position = spawnPoint1;
+        this.player1.position = this.spawnPoint1;
         let player1Material = new BABYLON.StandardMaterial("player1Material", this.scene);
         player1Material.diffuseColor = new BABYLON.Color3(1, 1, 1);
-        player1.material = player1Material;
+        this.player1.material = player1Material;
 
-        let player2 = BABYLON.MeshBuilder.CreateBox("player2", {
+        this.player2 = BABYLON.MeshBuilder.CreateBox("player2", {
             size: playerSize
         }, this.scene);
-        player2.position = spawnPoint2;
+        this.player2.position = this.spawnPoint2;
         let player2Material = new BABYLON.StandardMaterial("player2Material", this.scene);
         player2Material.diffuseColor = new BABYLON.Color3(0.5, 0.3, 0.1);
-        player2.material = player2Material;
+        this.player2.material = player2Material;
         
-        this.setupPlayers(player1, player2,ground);
+        this.setupPlayers(this.player1, this.player2,ground);
     }
 
     /**
@@ -192,14 +212,14 @@ class CoffeeScene {
      */
     setupPlayers(player1,player2,ground) {
 
-        const player1Aggregate = new BABYLON.PhysicsAggregate(
+        this.player1Aggregate = new BABYLON.PhysicsAggregate(
             player1,
             BABYLON.PhysicsShapeType.BOX,
             { mass: 1, restitution: 1 },
             this.scene
         );
 
-        const player2Aggregate = new BABYLON.PhysicsAggregate(
+        this.player2Aggregate = new BABYLON.PhysicsAggregate(
             player2,
             BABYLON.PhysicsShapeType.BOX,
             { mass: 1, restitution: 1 },
@@ -211,25 +231,25 @@ class CoffeeScene {
 
         const applyForce = () => {
             if (activeKeys.has("z")) {
-                player1Aggregate.body.applyForce(
+                this.player1Aggregate.body.applyForce(
                     new BABYLON.Vector3(0, 0, 5),
                     player1.getAbsolutePosition()
                 );
             }
             if (activeKeys.has("s")) {
-                player1Aggregate.body.applyForce(
+                this.player1Aggregate.body.applyForce(
                     new BABYLON.Vector3(0, 0, -5),
                     player1.getAbsolutePosition()
                 );
             }
             if (activeKeys.has("q")) {
-                player1Aggregate.body.applyForce(
+                this.player1Aggregate.body.applyForce(
                     new BABYLON.Vector3(-5, 0, 0),
                     player1.getAbsolutePosition()
                 );
             }
             if (activeKeys.has("d")) {
-                player1Aggregate.body.applyForce(
+                this.player1Aggregate.body.applyForce(
                     new BABYLON.Vector3(5, 0, 0),
                     player1.getAbsolutePosition()
                 );
@@ -246,7 +266,7 @@ class CoffeeScene {
             const isTouchingCoffee = player1.intersectsMesh(this.cylinder, false)
             console.log(`Is cube touching coffee: ${isTouchingCoffee}`);
             if (isTouchingCoffee) {
-                player1Aggregate.body.applyImpulse(
+                this.player1Aggregate.body.applyImpulse(
                     new BABYLON.Vector3(0, 3, 0),
                     player1.getAbsolutePosition()
                 );
@@ -265,25 +285,25 @@ class CoffeeScene {
 
         const applyForcePlayer2 = () => {
             if (player2Keys.has("up")) {
-                player2Aggregate.body.applyForce(
+                this.player2Aggregate.body.applyForce(
                     new BABYLON.Vector3(0, 0, 5),
                     player2.getAbsolutePosition()
                 );
             }
             if (player2Keys.has("down")) {
-                player2Aggregate.body.applyForce(
+                this.player2Aggregate.body.applyForce(
                     new BABYLON.Vector3(0, 0, -5),
                     player2.getAbsolutePosition()
                 );
             }
             if (player2Keys.has("left")) {
-                player2Aggregate.body.applyForce(
+                this.player2Aggregate.body.applyForce(
                     new BABYLON.Vector3(-5, 0, 0),
                     player2.getAbsolutePosition()
                 );
             }
             if (player2Keys.has("right")) {
-                player2Aggregate.body.applyForce(
+                this.player2Aggregate.body.applyForce(
                     new BABYLON.Vector3(5, 0, 0),
                     player2.getAbsolutePosition()
                 );
@@ -299,7 +319,7 @@ class CoffeeScene {
             const isTouchingCoffee = player2.intersectsMesh(this.cylinder, false);
             console.log(`Is player2 touching coffee: ${isTouchingCoffee}`);
             if (isTouchingCoffee) {
-                player2Aggregate.body.applyImpulse(
+                this.player2Aggregate.body.applyImpulse(
                     new BABYLON.Vector3(0, 3, 0),
                     player2.getAbsolutePosition()
                 );
@@ -322,8 +342,6 @@ class CoffeeScene {
         };
 
         this.scene.onBeforeRenderObservable.add(checkGroundCollision);
-
-        return player1Aggregate;
     }
 
     /**
@@ -367,6 +385,6 @@ class CoffeeScene {
     }
 
     resetScene() {
-        // TODO
+        window.location.reload();
     }
 }
