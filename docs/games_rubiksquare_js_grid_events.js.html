@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: games/rubiksquare/js/grid/events.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: games/rubiksquare/js/grid/events.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { moveUp, moveDown, moveLeft, moveRight } from './movement.js';
+import { checkForWin } from '../utils/winCheck.js';
+import { incrementMoveCount, randomizeGrid, incrementLevel, getCurrentLevel } from './grid.js';
+
+/**
+ * Attache des gestionnaires d'événements de clic et de glissement aux cellules de la grille.
+ * Permet de déplacer les cellules dans les directions haut, bas, gauche ou droite.
+ * @param {HTMLElement} grid - L'élément HTML contenant la grille.
+ */
+export function attachOnclickEvents(grid) {
+    const elements = grid.getElementsByTagName('div');
+    Array.from(elements).forEach(element => {
+        let startX, startY;
+
+        /**
+         * Détecte le début d'un clic ou d'un glissement sur une cellule.
+         * @param {MouseEvent} event - L'événement de clic de la souris.
+         */
+        element.onmousedown = function(event) {
+            startX = event.clientX;
+            startY = event.clientY;
+
+            /**
+             * Détecte le mouvement de la souris pour déterminer la direction du glissement.
+             * @param {MouseEvent} event - L'événement de mouvement de la souris.
+             */
+            document.onmousemove = function(event) {
+                const diffX = event.clientX - startX;
+                const diffY = event.clientY - startY;
+
+                // Détermine la direction du mouvement
+                if (Math.abs(diffX) > Math.abs(diffY)) {
+                    if (diffX > 0) {
+                        moveRight(element);
+                    } else {
+                        moveLeft(element);
+                    }
+                } else {
+                    if (diffY > 0) {
+                        moveDown(element);
+                    } else {
+                        moveUp(element);
+                    }
+                }
+
+                // Mett à jour la position de la grille après le mouvement
+                incrementMoveCount();
+
+                // Désactive le mouvement de la souris pour éviter les mouvements multiples
+				document.onmousemove = null;
+
+                // Vérifie si le joueur a gagné après chaque mouvement
+                if (checkForWin(grid)) {
+                    alert(`Bravo, vous avez gagné le niveau ${getCurrentLevel()} !`);
+                    incrementLevel();
+                    randomizeGrid(grid);
+                }
+                
+            };
+
+            /**
+             * Réinitialise les gestionnaires d'événements lorsque le clic est relâché.
+             */
+            document.onmouseup = function() {
+                document.onmousemove = null;
+                document.onmouseup = null;
+            };
+        };
+    });
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="CoffeeScene.html">CoffeeScene</a></li><li><a href="Main.html">Main</a></li><li><a href="ScoreManager.html">ScoreManager</a></li><li><a href="-_.html">_</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CellFromDom">CellFromDom</a></li><li><a href="global.html#DomFromCell">DomFromCell</a></li><li><a href="global.html#GET_SCORE">GET_SCORE</a></li><li><a href="global.html#attachOnclickEvents">attachOnclickEvents</a></li><li><a href="global.html#ball">ball</a></li><li><a href="global.html#checkForWin">checkForWin</a></li><li><a href="global.html#drawBall">drawBall</a></li><li><a href="global.html#drawBasket">drawBasket</a></li><li><a href="global.html#drawVector">drawVector</a></li><li><a href="global.html#generateGrid">generateGrid</a></li><li><a href="global.html#getCurrentLevel">getCurrentLevel</a></li><li><a href="global.html#getElapsedTime">getElapsedTime</a></li><li><a href="global.html#getGridColors">getGridColors</a></li><li><a href="global.html#getMoveCount">getMoveCount</a></li><li><a href="global.html#incrementLevel">incrementLevel</a></li><li><a href="global.html#incrementMoveCount">incrementMoveCount</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#moveBasket">moveBasket</a></li><li><a href="global.html#moveDown">moveDown</a></li><li><a href="global.html#moveLeft">moveLeft</a></li><li><a href="global.html#moveRight">moveRight</a></li><li><a href="global.html#moveUp">moveUp</a></li><li><a href="global.html#nextLevel">nextLevel</a></li><li><a href="global.html#randomizeGrid">randomizeGrid</a></li><li><a href="global.html#refreshPositions">refreshPositions</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#rimLeft">rimLeft</a></li><li><a href="global.html#updateScore">updateScore</a></li><li><a href="global.html#wait">wait</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Tue May 06 2025 15:45:21 GMT+0200 (heure d’été d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

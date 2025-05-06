@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: CoffeeScene</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: CoffeeScene</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2><span class="attribs"><span class="type-signature"></span></span>CoffeeScene<span class="signature">(engine, canvas)</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description">Classe représentant la scène CoffeeScene.Cette scène inclut les joueurs, un mug, du café et les interactions physiques.</div>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+    <h2>Constructor</h2>
+    
+
+    
+    <h4 class="name" id="CoffeeScene"><span class="type-signature"></span>new CoffeeScene<span class="signature">(engine, canvas)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Constructeur de la classe CoffeeScene.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>engine</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">BABYLON.Engine</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Le moteur Babylon.js utilisé pour le rendu.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>canvas</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLCanvasElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">L'élément canvas HTML utilisé pour le rendu.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="games_sukr_game_scenes_CoffeeScene.js.html">games/sukr/game/scenes/CoffeeScene.js</a>, <a href="games_sukr_game_scenes_CoffeeScene.js.html#line5">line 5</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        Si le moteur n'est pas défini.
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="canvas"><span class="type-signature"></span>canvas<span class="type-signature"> :HTMLCanvasElement</span></h4>
+
+
+
+
+<div class="description">
+    Élément canvas HTML.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">HTMLCanvasElement</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="games_sukr_game_scenes_CoffeeScene.js.html">games/sukr/game/scenes/CoffeeScene.js</a>, <a href="games_sukr_game_scenes_CoffeeScene.js.html#line23">line 23</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="engine"><span class="type-signature"></span>engine<span class="type-signature"> :BABYLON.Engine</span></h4>
+
+
+
+
+<div class="description">
+    Moteur Babylon.js.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">BABYLON.Engine</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="games_sukr_game_scenes_CoffeeScene.js.html">games/sukr/game/scenes/CoffeeScene.js</a>, <a href="games_sukr_game_scenes_CoffeeScene.js.html#line21">line 21</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="havokInstance"><span class="type-signature"></span>havokInstance<span class="type-signature"> :any</span></h4>
+
+
+
+
+<div class="description">
+    Instance de Havok Physics.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">any</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="games_sukr_game_scenes_CoffeeScene.js.html">games/sukr/game/scenes/CoffeeScene.js</a>, <a href="games_sukr_game_scenes_CoffeeScene.js.html#line41">line 41</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="havokPlugin"><span class="type-signature"></span>havokPlugin<span class="type-signature"> :BABYLON.HavokPlugin</span></h4>
+
+
+
+
+<div class="description">
+    Plugin Havok pour Babylon.js.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">BABYLON.HavokPlugin</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="games_sukr_game_scenes_CoffeeScene.js.html">games/sukr/game/scenes/CoffeeScene.js</a>, <a href="games_sukr_game_scenes_CoffeeScene.js.html#line43">line 43</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="mug"><span class="type-signature"></span>mug<span class="type-signature"> :BABYLON.Mesh|null</span></h4>
+
+
+
+
+<div class="description">
+    Mug dans la scène.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">BABYLON.Mesh</span>
+|
+
+<span class="param-type">null</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="games_sukr_game_scenes_CoffeeScene.js.html">games/sukr/game/scenes/CoffeeScene.js</a>, <a href="games_sukr_game_scenes_CoffeeScene.js.html#line29">line 29</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="player1"><span class="type-signature"></span>player1<span class="type-signature"> :BABYLON.Mesh|null</span></h4>
+
+
+
+
+<div class="description">
+    Joueur 1.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">BABYLON.Mesh</span>
+|
+
+<span class="param-type">null</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="games_sukr_game_scenes_CoffeeScene.js.html">games/sukr/game/scenes/CoffeeScene.js</a>, <a href="games_sukr_game_scenes_CoffeeScene.js.html#line25">line 25</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="player2"><span class="type-signature"></span>player2<span class="type-signature"> :BABYLON.Mesh|null</span></h4>
+
+
+
+
+<div class="description">
+    Joueur 2.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">BABYLON.Mesh</span>
+|
+
+<span class="param-type">null</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="games_sukr_game_scenes_CoffeeScene.js.html">games/sukr/game/scenes/CoffeeScene.js</a>, <a href="games_sukr_game_scenes_CoffeeScene.js.html#line27">line 27</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="scene"><span class="type-signature"></span>scene<span class="type-signature"> :BABYLON.Scene</span></h4>
+
+
+
+
+<div class="description">
+    Scène Babylon.js.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">BABYLON.Scene</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="games_sukr_game_scenes_CoffeeScene.js.html">games/sukr/game/scenes/CoffeeScene.js</a>, <a href="games_sukr_game_scenes_CoffeeScene.js.html#line19">line 19</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="winner"><span class="type-signature"></span>winner<span class="type-signature"> :string|null</span></h4>
+
+
+
+
+<div class="description">
+    Gagnant de la partie.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">string</span>
+|
+
+<span class="param-type">null</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="games_sukr_game_scenes_CoffeeScene.js.html">games/sukr/game/scenes/CoffeeScene.js</a>, <a href="games_sukr_game_scenes_CoffeeScene.js.html#line31">line 31</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="createScene"><span class="type-signature"></span>createScene<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Crée les éléments de la scène, y compris les lumières, le sol, les joueurs et les objets.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="games_sukr_game_scenes_CoffeeScene.js.html">games/sukr/game/scenes/CoffeeScene.js</a>, <a href="games_sukr_game_scenes_CoffeeScene.js.html#line60">line 60</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="declareWinner"><span class="type-signature"></span>declareWinner<span class="signature">(winner)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Déclare le gagnant de la partie et affiche un message.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>winner</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Nom du gagnant.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="games_sukr_game_scenes_CoffeeScene.js.html">games/sukr/game/scenes/CoffeeScene.js</a>, <a href="games_sukr_game_scenes_CoffeeScene.js.html#line333">line 333</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="init"><span class="type-signature">(async) </span>init<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Initialise la scène en configurant la physique et en créant les objets.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="games_sukr_game_scenes_CoffeeScene.js.html">games/sukr/game/scenes/CoffeeScene.js</a>, <a href="games_sukr_game_scenes_CoffeeScene.js.html#line52">line 52</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="initHavok"><span class="type-signature">(async) </span>initHavok<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Initialise le moteur physique Havok pour la scène.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="games_sukr_game_scenes_CoffeeScene.js.html">games/sukr/game/scenes/CoffeeScene.js</a>, <a href="games_sukr_game_scenes_CoffeeScene.js.html#line39">line 39</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="setupPlayers"><span class="type-signature"></span>setupPlayers<span class="signature">(player1, player2, ground)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Configure les joueurs et leurs interactions physiques.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>player1</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">BABYLON.Mesh</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Joueur 1.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>player2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">BABYLON.Mesh</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Joueur 2.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>ground</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">BABYLON.Mesh</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Sol de la scène.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="games_sukr_game_scenes_CoffeeScene.js.html">games/sukr/game/scenes/CoffeeScene.js</a>, <a href="games_sukr_game_scenes_CoffeeScene.js.html#line193">line 193</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="CoffeeScene.html">CoffeeScene</a></li><li><a href="Main.html">Main</a></li><li><a href="ScoreManager.html">ScoreManager</a></li><li><a href="-_.html">_</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CellFromDom">CellFromDom</a></li><li><a href="global.html#DomFromCell">DomFromCell</a></li><li><a href="global.html#GET_SCORE">GET_SCORE</a></li><li><a href="global.html#attachOnclickEvents">attachOnclickEvents</a></li><li><a href="global.html#ball">ball</a></li><li><a href="global.html#checkForWin">checkForWin</a></li><li><a href="global.html#drawBall">drawBall</a></li><li><a href="global.html#drawBasket">drawBasket</a></li><li><a href="global.html#drawVector">drawVector</a></li><li><a href="global.html#generateGrid">generateGrid</a></li><li><a href="global.html#getCurrentLevel">getCurrentLevel</a></li><li><a href="global.html#getElapsedTime">getElapsedTime</a></li><li><a href="global.html#getGridColors">getGridColors</a></li><li><a href="global.html#getMoveCount">getMoveCount</a></li><li><a href="global.html#incrementLevel">incrementLevel</a></li><li><a href="global.html#incrementMoveCount">incrementMoveCount</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#moveBasket">moveBasket</a></li><li><a href="global.html#moveDown">moveDown</a></li><li><a href="global.html#moveLeft">moveLeft</a></li><li><a href="global.html#moveRight">moveRight</a></li><li><a href="global.html#moveUp">moveUp</a></li><li><a href="global.html#nextLevel">nextLevel</a></li><li><a href="global.html#randomizeGrid">randomizeGrid</a></li><li><a href="global.html#refreshPositions">refreshPositions</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#rimLeft">rimLeft</a></li><li><a href="global.html#updateScore">updateScore</a></li><li><a href="global.html#wait">wait</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Tue May 06 2025 15:45:21 GMT+0200 (heure d’été d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
