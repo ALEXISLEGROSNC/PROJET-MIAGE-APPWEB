@@ -28,7 +28,7 @@ function newObstacle() {
     obstacles.push(obstacle);
     console.log("Creating new obstacles...");
 }
-
+//suppression d'obstacles
 function removeObstacle() {
     obstacles.forEach((obstacle) => {
         Matter.World.remove(world, obstacle);

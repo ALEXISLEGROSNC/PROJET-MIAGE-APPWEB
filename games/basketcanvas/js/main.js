@@ -8,10 +8,10 @@ let needsReset = false;
 let ballLaunched = false;
 let level = 1;
 
-
+var gameElement = document.body;
 // Création du render
 const render = Render.create({
-    element: document.body,
+    element: gameElement,
     engine: engine,
     options: {
         width: window.innerWidth,
