@@ -12,6 +12,10 @@ window.USERSCORE = level-1;
 updateScore(window.USERSCORE);
 
 var gameElement = document.body;
+
+/**
+ * Crée de la scène de jeu
+ */
 // Création du render
 const render = Render.create({
     element: gameElement,
@@ -26,6 +30,9 @@ const render = Render.create({
 // Mise à jour du jeu au passage dans le panier
 let ballInHoopArea = false;
 
+/**
+ * Passe au niveau suivant et ajoute d'obstacles
+ */
 //Passage au niveau suivant et ajout d'obstacles
 function nextLevel(){
     console.log("Next level!");
@@ -42,11 +49,19 @@ function nextLevel(){
     updateScore(level-1)
 };
 
+/**
+ * Met à jour le score
+ * @param {number} score 
+ */
 function updateScore(score){
     document.getElementById("score").innerText=score;
     window.USERSCORE=score;
 }
 
+/**
+ * Détecte l'entrée de la balle dans le panier et la chute de la balle
+ * @param {object} engine - Le moteur de physique Matter.js
+ */
 //Détéction de l'entrée de la balle dans le panier et de la chute de la balle
 Events.on(engine, "afterUpdate", () => {
     const isInHoopArea =
@@ -74,6 +89,9 @@ Events.on(engine, "afterUpdate", () => {
 
 Runner.run(engine);
 
+/**
+ * Boucle de rendu du jeu
+ */
 (function renderLoop() {
     const context = render.context;
 

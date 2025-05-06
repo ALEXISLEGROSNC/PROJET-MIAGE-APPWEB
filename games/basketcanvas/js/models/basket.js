@@ -13,12 +13,27 @@ const hoopY = window.innerHeight / 3;
 const phiscalLeftHoopX = hoopX - 40;
 const phiscalRightHoopX = hoopX + 40;
 
+/**
+ * Crée le panier physique
+ * @param {number} phiscalLeftHoopX - Position X du bord gauche du panier
+ * @param {number} phiscalRightHoopX - Position X du bord droit du panier
+ */
 // Création du panier physique
 const rimLeft = Matter.Bodies.circle(phiscalLeftHoopX, hoopY + 50, 5, { isStatic: true });
 const rimRight = Matter.Bodies.circle(phiscalRightHoopX, hoopY + 50, 5, { isStatic: true });
 
+/**
+ * Ajoute le panier physique au monde
+ * @param {Matter.World} world - Le monde Matter.js
+ * @param {Matter.Body} rimLeft - Le bord gauche du panier
+ * @param {Matter.Body} rimRight - Le bord droit du panier
+ */
 Matter.World.add(world, [rimLeft, rimRight]);
 
+/**
+ * Déplace le panier en fonction du niveau
+ * @param {number} level - Le niveau actuel du jeu
+ */
 //Fonction pour que le panier soit en mouvement
 function moveBasket(level) {
     const slowSpeed = 1;
@@ -40,6 +55,10 @@ function moveBasket(level) {
     }
 }
 
+/**
+ * Dessine le panier sur le canvas
+ * @param {CanvasRenderingContext2D} context - Le contexte de dessin du canvas
+ */
 //Création du dessin du panier
 function drawBasket(context) {
     context.save();

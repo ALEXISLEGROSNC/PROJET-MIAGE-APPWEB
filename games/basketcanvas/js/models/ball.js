@@ -1,5 +1,9 @@
 import { world, width, height, ground } from '../core/engine.js';
 
+/**
+ * Crée la balle physique
+ * @param {number} width - Largeur de la fenêtre
+ */
 //Création de la balle
 const ball = Matter.Bodies.circle(width / 2, height - 300, 20, { restitution: 0.7 });
 Matter.World.add(world, ball);
@@ -8,6 +12,10 @@ let startX, startY;
 let dragging = false;
 let currentX, currentY;
 
+/**
+ * Détecte la position de la souris pour charger le tir
+ * @param {MouseEvent} event - L'événement de la souris
+ */
 //Détection de la souris pour charger le tir
 window.addEventListener("mousedown", (event) => {
     const mousePos = { x: event.clientX, y: event.clientY };
@@ -18,6 +26,10 @@ window.addEventListener("mousedown", (event) => {
     }
 });
 
+/**
+ * Détecte la position de la souris pour charger le tir
+ * @param {MouseEvent} event - L'événement de la souris
+ */
 //Détéction de la souris pour charger le tir
 window.addEventListener("mousemove", (event) => {
     if (dragging) {
@@ -32,6 +44,10 @@ let currentGround = ground;
     currentGround = newGround;
 } Plus utilisée */
 
+/**
+ * Détecte la souris pour lancer la balle
+ * @param {MouseEvent} event - L'événement de la souris
+ */
 //Détection de la souris pour lancer la balle
 window.addEventListener("mouseup", (event) => {
     if (!dragging) return;
@@ -52,7 +68,10 @@ window.addEventListener("mouseup", (event) => {
     }
 });
 
-
+/**
+ * Dessine le vecteur de force pour le tir
+ * @param {CanvasRenderingContext2D} context - Le contexte de dessin du canvas
+ */
 //Dessine le vecteur de force
 function drawVector(context) {
     if (dragging) {
@@ -68,6 +87,10 @@ function drawVector(context) {
     }
 }
 
+/**
+ * Dessine la balle sur le canvas
+ * @param {CanvasRenderingContext2D} context - Le contexte de dessin du canvas
+ */
 //Dessine la balle
 function drawBall(context) {
     context.save();
