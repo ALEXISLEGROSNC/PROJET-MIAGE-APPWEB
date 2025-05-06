@@ -1,6 +1,22 @@
+/**
+ * Classe de gestion des scores.
+ * Cette classe permet de stocker, récupérer et afficher les scores des utilisateurs pour différents jeux.
+ */
 class ScoreManager {
+    /**
+     * Clé utilisée pour stocker les scores dans le localStorage.
+     * @type {string}
+     * @constant
+     */
     static STORAGE_KEY = 'scores';
 
+    /**
+     * Stocke un score pour un utilisateur et un jeu donné.
+     * 
+     * @param {string} username - Nom d'utilisateur.
+     * @param {number} score - Score obtenu par l'utilisateur.
+     * @param {string} gameName - Nom du jeu.
+     */
     static store(username, score, gameName) {
         console.log(`Storing score: username=${username}, score=${score}, gameName=${gameName}`);
         const scores = JSON.parse(localStorage.getItem(ScoreManager.STORAGE_KEY)) || [];
@@ -11,6 +27,12 @@ class ScoreManager {
         console.log('Updated scores saved to localStorage:', scores);
     }
 
+    /**
+     * Récupère tous les scores pour un jeu donné.
+     * 
+     * @param {string} gameName - Nom du jeu.
+     * @returns {Array<{username: string, score: number}>} Liste des scores pour le jeu.
+     */
     static getAllScoresForGame(gameName) {
         console.log(`Fetching all scores for game: ${gameName}`);
         const scores = JSON.parse(localStorage.getItem(ScoreManager.STORAGE_KEY)) || [];
@@ -22,6 +44,11 @@ class ScoreManager {
         return filteredScores;
     }
 
+    /**
+     * Génère et affiche une modale contenant les meilleurs scores pour un jeu donné.
+     * 
+     * @param {string} gameName - Nom du jeu.
+     */
     static generateScoreModal(gameName) {
         // Titre user-friendly au lieu d'afficher le nom de la base
         let displayName = gameName;
