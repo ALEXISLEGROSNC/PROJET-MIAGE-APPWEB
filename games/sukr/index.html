@@ -11,6 +11,7 @@
     <script src="https://cdn.babylonjs.com/babylon.js" defer></script>
     <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js" defer></script>
     <script src="https://cdn.babylonjs.com/havok/HavokPhysics_umd.js" defer></script>
+    <script src="../../public/js/com/auth.js"></script>   <!-- Authentication manager -->
 
     <!-- GAME INIT -->
     <script type="module">
@@ -32,9 +33,14 @@
 
 </head>
 <body onload="" cz-shortcut-listen="true">
-
+    <script>
+        if(AuthenticationManager.isLoggedIn()){
+            console.log('User is logged in');
+        } else {
+            window.location.href='../../auth.html'
+        }
+    </script>
     <h1>☕ Sukr</h1>
-
     <canvas
         id="renderCanvas"
         width="800"
