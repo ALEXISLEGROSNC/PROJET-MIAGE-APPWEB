@@ -65,6 +65,11 @@ Le score est calculé en fonction des critères suivants :
 <td>@BeaMoura0906</td>
 <td>beatriz.moura@etu.unice.fr</td>
 </tr>
+<tr>
+<td>Damien PIZARRO</td>
+<td>@DEUMSS</td>
+<td>damien.pizarro@etu.unice.fr</td>
+</tr>
 </tbody>
 </table>
 <br>
